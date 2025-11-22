@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas Daily - Guess the Mystery Country</title>
+    <meta name="description" content="Test your geography knowledge with Atlas Daily - a daily country guessing game featuring emoji clues and comparison challenges.">
+    <meta property="og:title" content="Atlas Daily - Guess the Mystery Country">
+    <meta property="og:description" content="Test your geography knowledge with Atlas Daily - a daily country guessing game featuring emoji clues and comparison challenges.">
+    <meta property="og:url" content="https://atlas-daily.com">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://atlas-daily.com">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <button class="lang-button" id="langButton" onclick="toggleLangDropdown()">
+            <span id="currentLang">EN</span>
+            <svg class="lang-arrow" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        <div class="lang-dropdown" id="langDropdown">
+            <div class="lang-option" data-lang="en" onclick="changeLanguage('en')">English</div>
+            <div class="lang-option" data-lang="pt" onclick="changeLanguage('pt')">Português</div>
+            <div class="lang-option" data-lang="es" onclick="changeLanguage('es')">Español</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1 class="title">Atlas Daily</h1>
+            <p class="subtitle" id="gameSubtitle">Guess the mystery country from emoji clues</p>
+        </div>
+
+        <!-- Game Mode Selector -->
+        <div class="mode-selector">
+            <button class="mode-button active" onclick="switchMode('emoji')" id="emojiModeBtn">Emoji Game</button>
+            <button class="mode-button" onclick="switchMode('comparison')" id="comparisonModeBtn">Comparison Game</button>
+        </div>
+
+        <!-- EMOJI GAME -->
+        <div id="emojiGame" class="game-mode">
+            <!-- Input Section -->
+            <div class="input-section">
+                <input
+                    type="text"
+                    id="countryInput"
+                    class="country-input"
+                    placeholder="Enter a country name..."
+                    autocomplete="off"
+                    list="countryList"
+                >
+                <datalist id="countryList"></datalist>
+                <button class="guess-button emoji-guess-button" onclick="makeGuess()">
+                    <svg class="globe-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M12 2C12 2 8 6 8 12C8 18 12 22 12 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M12 2C12 2 16 6 16 12C16 18 12 22 12 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M2 12H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M4 8H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M4 16H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span class="button-text">Guess</span>
+                </button>
+            </div>
+
+            <!-- Guess Counter -->
+            <div class="guess-counter hidden" id="guessCounter">
+                <span id="guessCount">0</span> / 8 guesses
+            </div>
+
+            <!-- Emoji Hints Container -->
+            <div class="emoji-container hidden" id="emojiContainer">
+                <div class="emoji-hint">?</div>
+                <div class="emoji-hint">?</div>
+                <div class="emoji-hint">?</div>
+                <div class="emoji-hint">?</div>
+                <div class="emoji-hint">?</div>
+                <div class="emoji-hint">?</div>
+                <div class="emoji-hint">?</div>
+                <div class="emoji-hint">?</div>
+            </div>
+
+            <!-- Guessing History -->
+            <div class="guessing-history hidden" id="guessingHistory">
+                <div class="history-list" id="historyList"></div>
+            </div>
+
+            <!-- Success Card -->
+            <div id="successCard" class="success-card hidden">
+                <div class="success-card-content">
+                    <button class="close-modal" onclick="resetGame()">&times;</button>
+                    <div class="success-header">
+                        <div class="flag-large" id="flagLarge"></div>
+                        <h3 class="country-name-large" id="countryNameLarge"></h3>
+                    </div>
+                    <div class="map-container">
+                        <iframe
+                            id="countryMap"
+                            class="country-map"
+                            frameborder="0"
+                            scrolling="no"
+                            marginheight="0"
+                            marginwidth="0">
+                        </iframe>
+                    </div>
+                    <div class="success-stats">
+                        <p class="success-text">You guessed it in <span id="finalGuesses"></span> guesses!</p>
+                    </div>
+                    <button class="play-again-button" onclick="resetGame()">Play Again</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMPARISON GAME -->
+        <div id="comparisonGame" class="game-mode hidden">
+            <!-- Input Section -->
+            <div class="input-section">
+                <input
+                    type="text"
+                    id="comparisonInput"
+                    class="country-input"
+                    placeholder="Enter a country name..."
+                    autocomplete="off"
+                >
+                <div id="comparisonDropdown" class="autocomplete-dropdown"></div>
+                <button class="guess-button comparison-guess-button" onclick="makeComparisonGuess()">
+                    <svg class="globe-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M12 2C12 2 8 6 8 12C8 18 12 22 12 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M12 2C12 2 16 6 16 12C16 18 12 22 12 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M2 12H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M4 8H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M4 16H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span class="button-text">Guess</span>
+                </button>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="comparison-table-container">
+                <table class="comparison-table" id="comparisonTable">
+                    <thead>
+                        <tr>
+                            <th>Country</th>
+                            <th>Continent</th>
+                            <th>Languages</th>
+                            <th>Population</th>
+                            <th>Climate</th>
+                            <th>Area</th>
+                            <th>Religion</th>
+                            <th>Sea Access</th>
+                        </tr>
+                    </thead>
+                    <tbody id="comparisonTableBody">
+                        <!-- Guesses will be added here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Win Message -->
+            <div id="comparisonWin" class="comparison-win hidden">
+                <div class="win-content">
+                    <button class="close-modal" onclick="resetComparisonGame()">&times;</button>
+                    <div class="win-flag" id="winFlag"></div>
+                    <h2 class="win-title">You won!</h2>
+                    <p class="win-text">You guessed <span id="winCountry"></span> correctly!</p>
+                    <button class="play-again-button" onclick="resetComparisonGame()">Play Again</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="translations.js"></script>
+    <script src="countries.js"></script>
+    <script src="countryData.js"></script>
+    <script src="game.js"></script>
+    <script src="comparisonGame.js"></script>
+</body>
+</html>
