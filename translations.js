@@ -4,8 +4,10 @@ const translations = {
         title: "Atlas Daily",
         subtitle_emoji: "Guess the mystery country from emoji clues",
         subtitle_comparison: "Guess the country by comparing characteristics",
-        emojiMode: "Emoji Game",
-        comparisonMode: "Comparison Game",
+        subtitle_tips: "Guess the country from progressive tips",
+        emojiMode: "Emojis",
+        comparisonMode: "Características",
+        tipsMode: "Dicas",
         inputPlaceholder: "Enter a country name...",
         guessButton: "Guess",
         guesses: "guesses",
@@ -22,14 +24,34 @@ const translations = {
         climate: "Climate",
         area: "Area",
         religion: "Religion",
-        seaAccess: "Sea Access"
+        seaAccess: "Sea Access",
+        // Population ranges
+        "very small": "very small",
+        "small": "small",
+        "medium": "medium",
+        "large": "large",
+        "huge": "huge",
+        // Climate types
+        "cold": "cold",
+        "temperate": "temperate",
+        "tropical": "tropical",
+        // Sea access
+        "landlocked": "landlocked",
+        "coastal": "coastal",
+        "island": "island",
+        // Share button
+        shareWithFriend: "Share with a friend",
+        copied: "Copied!",
+        tries: "tries"
     },
     pt: {
         title: "Atlas Daily",
         subtitle_emoji: "Adivinhe o país misterioso através de pistas em emoji",
         subtitle_comparison: "Adivinhe o país comparando características",
-        emojiMode: "Jogo de Emojis",
-        comparisonMode: "Jogo de Comparação",
+        subtitle_tips: "Adivinhe o país através de dicas progressivas",
+        emojiMode: "Emojis",
+        comparisonMode: "Características",
+        tipsMode: "Dicas",
         inputPlaceholder: "Digite o nome de um país...",
         guessButton: "Adivinhar",
         guesses: "tentativas",
@@ -46,14 +68,34 @@ const translations = {
         climate: "Clima",
         area: "Área",
         religion: "Religião",
-        seaAccess: "Acesso ao Mar"
+        seaAccess: "Acesso ao Mar",
+        // Population ranges
+        "very small": "muito pequena",
+        "small": "pequena",
+        "medium": "média",
+        "large": "grande",
+        "huge": "enorme",
+        // Climate types
+        "cold": "frio",
+        "temperate": "temperado",
+        "tropical": "tropical",
+        // Sea access
+        "landlocked": "sem litoral",
+        "coastal": "costeiro",
+        "island": "ilha",
+        // Share button
+        shareWithFriend: "Compartilhar com um amigo",
+        copied: "Copiado!",
+        tries: "tentativas"
     },
     es: {
         title: "Atlas Daily",
         subtitle_emoji: "Adivina el país misterioso con pistas de emojis",
         subtitle_comparison: "Adivina el país comparando características",
-        emojiMode: "Juego de Emojis",
-        comparisonMode: "Juego de Comparación",
+        subtitle_tips: "Adivina el país con pistas progresivas",
+        emojiMode: "Emojis",
+        comparisonMode: "Características",
+        tipsMode: "Pistas",
         inputPlaceholder: "Ingresa el nombre de un país...",
         guessButton: "Adivinar",
         guesses: "intentos",
@@ -70,7 +112,25 @@ const translations = {
         climate: "Clima",
         area: "Área",
         religion: "Religión",
-        seaAccess: "Acceso al Mar"
+        seaAccess: "Acceso al Mar",
+        // Population ranges
+        "very small": "muy pequeña",
+        "small": "pequeña",
+        "medium": "mediana",
+        "large": "grande",
+        "huge": "enorme",
+        // Climate types
+        "cold": "frío",
+        "temperate": "templado",
+        "tropical": "tropical",
+        // Sea access
+        "landlocked": "sin litoral",
+        "coastal": "costero",
+        "island": "isla",
+        // Share button
+        shareWithFriend: "Compartir con un amigo",
+        copied: "¡Copiado!",
+        tries: "intentos"
     }
 };
 
@@ -126,6 +186,7 @@ function updateTexts() {
     // Update mode buttons
     document.getElementById('emojiModeBtn').textContent = t.emojiMode;
     document.getElementById('comparisonModeBtn').textContent = t.comparisonMode;
+    document.getElementById('tipsModeBtn').textContent = t.tipsMode;
 
     // Update input placeholders
     const emojiInput = document.getElementById('countryInput');
@@ -169,12 +230,38 @@ function updateTexts() {
 
     const winText = document.querySelector('.win-text');
     if (winText) {
-        const countryName = document.getElementById('winCountry').textContent;
-        winText.innerHTML = `${t.youGuessedCorrectly} <span id="winCountry">${countryName}</span> ${t.correctly}`;
+        const countryName = document.getElementById('winCountry')?.textContent;
+        if (countryName) {
+            winText.innerHTML = `${t.youGuessedCorrectly} <span id="winCountry">${countryName}</span> ${t.correctly}`;
+        }
+    }
+
+    // Update share button
+    const shareButtonText = document.querySelector('.share-button-text');
+    if (shareButtonText) shareButtonText.textContent = t.shareWithFriend;
+
+    // Update win guesses text
+    const winGuesses = document.querySelector('.win-guesses');
+    if (winGuesses) {
+        const count = document.getElementById('winGuessCount')?.textContent;
+        if (count) {
+            winGuesses.innerHTML = `${t.youGuessed.toLowerCase()} <span id="winGuessCount">${count}</span> ${t.tries}`;
+        }
     }
 
     // Update guess counter
     updateGuessCounter();
+}
+
+// Translate comparison game values
+function translateValue(value) {
+    const t = translations[currentLanguage];
+    // Check if the value exists in translations
+    if (t[value]) {
+        return t[value];
+    }
+    // Return original value if no translation found
+    return value;
 }
 
 // Update guess counter text
@@ -187,15 +274,34 @@ function updateGuessCounter() {
     }
 }
 
+// Detect browser language
+function detectBrowserLanguage() {
+    // Get browser language (e.g., 'en-US', 'pt-BR', 'es-ES')
+    const browserLang = navigator.language || navigator.userLanguage;
+
+    // Extract the primary language code (e.g., 'en' from 'en-US')
+    const langCode = browserLang.split('-')[0].toLowerCase();
+
+    // Map to supported languages
+    const supportedLanguages = ['en', 'pt', 'es'];
+
+    // Return the language if supported, otherwise return 'en' as fallback
+    return supportedLanguages.includes(langCode) ? langCode : 'en';
+}
+
 // Initialize language on page load
 document.addEventListener('DOMContentLoaded', () => {
-    // Load saved language preference
-    const savedLang = localStorage.getItem('atlasLanguage') || 'en';
-    if (savedLang !== 'en') {
-        changeLanguage(savedLang);
+    // Check if user has manually set a language preference
+    const savedLang = localStorage.getItem('atlasLanguage');
+
+    // If user has a saved preference, use that
+    // Otherwise, detect browser language
+    const initialLang = savedLang || detectBrowserLanguage();
+
+    if (initialLang !== 'en') {
+        changeLanguage(initialLang);
     } else {
-        // Set default active
-        document.querySelector('[data-lang="en"]')?.classList.add('active');
+        changeLanguage('en');
     }
 
     // Close dropdown when clicking outside

@@ -8,40 +8,41 @@ Please answer the following questions to help complete and refine the design sys
 
 ### Primary Colors
 - ✅ **Primary CTA Color**: #007BFF (confirmed)
-- ❓ **Secondary Color**: Do you want a secondary brand color for accents or less important actions?
-- ❓ **Accent Color**: Do you want an accent color for highlights or special states?
-- ❓ **Dark Mode**: Should we support a light theme in addition to the current dark theme?
+- ✅ **Secondary Color**: #19386B
+- ✅ **Accent Color**: No accent color needed
+- ✅ **Dark Mode**: Yes, support light theme in addition to dark theme
 
 ### Feedback Colors
-- ❓ **Success Color**: Are you happy with the current green (#22c55e) or would you prefer a different shade?
-- ❓ **Warning Color**: Are you happy with the current yellow (#eab308)?
-- ❓ **Error Color**: Are you happy with the current red (#ef4444)?
+- ✅ **Success Color**: Use primary color (#007BFF)
+- ✅ **Warning Color**: Yes, keep current yellow (#eab308)
+- ✅ **Error Color**: Yes, keep current red (#ef4444)
 
 ---
 
 ## 2. Typography
 
 ### Font Selection
-- ❓ **Custom Font**: Do you want to use a custom web font (like Google Fonts) or stick with system fonts?
-- ❓ **Suggested fonts**: Inter, Poppins, Space Grotesk, DM Sans, Manrope
-- ❓ **Font Pairing**: Do you want different fonts for headings vs body text?
+- ✅ **Custom Font**: Yes, use custom web fonts
+- ✅ **Title Font**: Jaro (Google Fonts)
+- ✅ **Body Font**: SF Compact Light (system font)
+- ✅ **Font Pairing**: Yes, Jaro for headings and SF Compact Light for body text
 
 ### Type Scale
-- ❓ **Title Size**: Current is 4rem (64px) - should this be larger/smaller?
-- ❓ **Body Text**: Current is 0.95rem (15.2px) - is this comfortable to read?
-- ❓ **Mobile Scaling**: Should fonts be smaller on mobile devices?
+- ✅ **Title Size**: Current 4rem (64px) is fine
+- ✅ **Body Text**: Current 0.95rem (15.2px) is fine
+- ✅ **Mobile Scaling**: Yes, follow best practices for mobile font sizes (research web standards)
 
 ---
 
 ## 3. Spacing & Layout
 
 ### Container Width
-- ❓ **Max Width**: Current max-width is 1000px - should this be wider/narrower?
-- ❓ **Padding**: Should mobile devices have less padding than desktop?
+- ✅ **Max Width**: Increase slightly from 1000px (suggest 1200px)
+- ✅ **Padding**: Yes, mobile devices should have less padding than desktop
 
 ### Grid System
-- ❓ **Do you want a defined grid system** for consistent layouts (e.g., 12-column grid)?
-- ❓ **Emoji Game Grid**: Current is 4 columns on desktop, 2 on mobile - is this optimal?
+- ✅ **Grid System**: Yes, use a defined 12-column grid for consistent layouts
+- ✅ **Emoji Game Grid**: Current 4 columns desktop / 2 mobile is fine
 
 ---
 
@@ -49,72 +50,72 @@ Please answer the following questions to help complete and refine the design sys
 
 ### Buttons
 - ✅ **Primary Button**: Pill-shaped with #007BFF (confirmed)
-- ❓ **Button Sizes**: Do you need small, medium, and large button variants?
-- ❓ **Icon-Only Buttons**: Besides close button, do you need other icon-only buttons?
-- ❓ **Disabled State**: What should disabled buttons look like?
+- ✅ **Button Sizes**: Two variants - Large (main CTAs) and Medium (settings/language)
+- ✅ **Icon-Only Buttons**: Only the close button for now
+- ✅ **Disabled State**: Set opacity to 50%
 
 ### Inputs
-- ❓ **Input Variants**: Do you need different input styles (outlined, filled, underlined)?
-- ❓ **Error State**: How should inputs look when they have an error?
-- ❓ **Success State**: Should inputs show a success state after validation?
+- ✅ **Input Variants**: Standard style is fine
+- ✅ **Error State**: To be defined based on usage
+- ✅ **Success State**: To be defined based on usage
 
 ### Dropdowns
 - ✅ **Style**: Clean white with subtle border (confirmed)
-- ❓ **Icons**: Should dropdown items have icons or just text?
-- ❓ **Multi-select**: Will you need multi-select dropdowns in the future?
+- ✅ **Icons**: Text only, no icons needed
+- ✅ **Multi-select**: No, not needed
 
 ---
 
 ## 5. Animations & Interactions
 
 ### Motion Preferences
-- ❓ **Reduce Motion**: Should we respect the user's "prefers-reduced-motion" setting?
-- ❓ **Loading States**: Do you need loading animations/spinners for async actions?
-- ❓ **Transitions**: Are the current animation speeds too fast/slow?
+- ✅ **Reduce Motion**: No, not implementing this feature for now
+- ✅ **Loading States**: Yes, need loading animations/spinners for async actions
+- ✅ **Transitions**: Current speeds feel smooth but can be improved
 
 ### Hover Effects
-- ❓ **Lift Effect**: Current buttons lift 2px on hover - is this too subtle/pronounced?
-- ❓ **Color Change**: Should hover states change color or just background?
+- ✅ **Lift Effect**: Remove lift effect (part of removing shades/effects)
+- ✅ **Hover State**: Add growing white stroke on hover instead of color/lift changes
 
 ---
 
 ## 6. Feedback & States
 
 ### Success States
-- ❓ **Confetti/Celebration**: Do you want confetti or particle effects on win?
-- ❓ **Sound Effects**: Should there be audio feedback for actions?
-- ❓ **Haptic Feedback**: On mobile, should buttons vibrate on tap?
+- ✅ **Confetti/Celebration**: No confetti or particle effects
+- ✅ **Sound Effects**: No audio feedback
+- ✅ **Haptic Feedback**: No haptic feedback on mobile
 
 ### Error States
-- ❓ **Error Messages**: How should error messages be displayed (toast, inline, modal)?
-- ❓ **Shake Animation**: Current invalid input shakes - keep this or change?
+- ✅ **Error Messages**: Use toast notifications
+- ✅ **Shake Animation**: Keep the shake animation for invalid input
 
 ---
 
 ## 7. Responsive Design
 
 ### Mobile Experience
-- ❓ **Mobile-First**: Should we design mobile-first or desktop-first?
-- ❓ **Tablet Layout**: Do you need specific designs for tablet (768px - 1024px)?
-- ❓ **Touch Targets**: Should buttons be larger on mobile (minimum 44px)?
+- ✅ **Mobile-First**: Yes, design mobile-first
+- ✅ **Tablet Layout**: No specific tablet designs needed
+- ✅ **Touch Targets**: Yes, buttons should be minimum 44px on mobile
 
 ### Breakpoints
-- ❓ **Additional Breakpoints**: Current only has 600px - do you need more?
-  - Suggested: 480px (small mobile), 768px (tablet), 1024px (small desktop), 1440px (large desktop)
+- ✅ **Additional Breakpoints**: Yes, add all suggested breakpoints
+  - 480px (small mobile), 768px (tablet), 1024px (small desktop), 1440px (large desktop)
 
 ---
 
 ## 8. Accessibility
 
 ### Contrast & Readability
-- ❓ **WCAG Compliance**: Should we aim for WCAG AA or AAA compliance?
-- ❓ **Font Size**: Should users be able to increase font size?
-- ❓ **Dyslexia Mode**: Should we offer a dyslexia-friendly font option?
+- ✅ **WCAG Compliance**: Yes, aim for WCAG AA or AAA compliance
+- ✅ **Font Size**: Yes, users should be able to increase font size
+- ✅ **Dyslexia Mode**: No, not offering dyslexia-friendly font option
 
 ### Keyboard Navigation
-- ❓ **Focus Indicators**: Do you want custom focus styles or browser defaults?
-- ❓ **Skip Links**: Should we add "skip to content" links?
-- ❓ **Keyboard Shortcuts**: Do you want keyboard shortcuts (e.g., "/" to focus search)?
+- ✅ **Focus Indicators**: To be defined during implementation
+- ✅ **Skip Links**: To be defined during implementation
+- ✅ **Keyboard Shortcuts**: To be defined during implementation
 
 ---
 
@@ -122,106 +123,104 @@ Please answer the following questions to help complete and refine the design sys
 
 ### Language Support
 - ✅ **Current Languages**: English, Portuguese, Spanish (confirmed)
-- ❓ **Additional Languages**: Which other languages should we support?
-  - Suggested: French, German, Italian, Japanese, Chinese, Arabic
-- ❓ **RTL Support**: Should we support right-to-left languages (Arabic, Hebrew)?
+- ✅ **Additional Languages**: To be added later as needed
+- ✅ **RTL Support**: To be considered when adding RTL languages
 
 ### Regional Formats
-- ❓ **Number Formatting**: Should numbers format based on locale (e.g., 1,000 vs 1.000)?
-- ❓ **Date Formatting**: Will you display dates? If so, which format?
+- ✅ **Number Formatting**: To be defined when needed
+- ✅ **Date Formatting**: To be defined when dates are displayed
 
 ---
 
 ## 10. Content Strategy
 
 ### Country Data
-- ❓ **Data Expansion**: Current has ~91 countries for emoji game - expand to all 195?
-- ❓ **Difficulty Levels**: Should countries be categorized by difficulty?
-- ❓ **Daily Challenge**: Do you want a "daily country" that's the same for all users?
+- ✅ **Data Expansion**: Yes, expand to all 195 countries
+- ✅ **Difficulty Levels**: No difficulty categorization
+- ✅ **Daily Challenge**: Yes, implement a "daily country" feature
 
 ### Educational Content
-- ❓ **Country Facts**: Should we show fun facts about countries after guessing?
-- ❓ **Learn More**: Should there be links to Wikipedia or other resources?
-- ❓ **Statistics**: Do you want to show personal stats (countries guessed, win rate, etc.)?
+- ✅ **Country Facts**: Yes, show fun facts about countries after guessing
+- ✅ **Learn More**: Yes, include links to Wikipedia or other resources
+- ✅ **Statistics**: Yes, show personal stats (countries guessed, win rate, etc.)
 
 ---
 
 ## 11. Gamification
 
 ### Progress & Achievements
-- ❓ **Streak Tracking**: Should we track daily play streaks?
-- ❓ **Achievements**: Do you want badges/achievements (e.g., "Guessed 50 countries")?
-- ❓ **Leaderboards**: Should there be global or friend leaderboards?
+- ✅ **Streak Tracking**: Yes, track daily play streaks
+- ✅ **Achievements**: Yes, implement badges/achievements system
+- ✅ **Leaderboards**: No leaderboards
 
 ### Difficulty & Modes
-- ❓ **Timed Mode**: Should there be a timed challenge mode?
-- ❓ **Hint System**: Should users be able to get hints (with a penalty)?
-- ❓ **Hard Mode**: Fewer emojis or characteristics revealed?
+- ✅ **Timed Mode**: No timed challenge mode
+- ✅ **Hint System**: Yes, implement hint system with penalty
+- ✅ **Hard Mode**: No hard mode
 
 ---
 
 ## 12. Social Features
 
 ### Sharing
-- ❓ **Share Results**: Should users be able to share their results (like Wordle)?
-- ❓ **Share Format**: Text-based (emoji squares) or image-based?
-- ❓ **Social Media**: Which platforms should we optimize for (Twitter, Instagram, Facebook)?
+- ✅ **Share Results**: Yes, users should be able to share results
+- ✅ **Share Format**: Text-based for now
+- ✅ **Social Media**: Platform optimization to be determined
 
 ### Multiplayer
-- ❓ **Multiplayer Mode**: Do you want head-to-head challenges?
-- ❓ **Friend Challenges**: Should users be able to challenge friends?
+- ✅ **Multiplayer Mode**: No head-to-head challenges
+- ✅ **Friend Challenges**: No friend challenges
 
 ---
 
 ## 13. Performance & Technical
 
 ### Loading
-- ❓ **Image Loading**: Should country maps/images be lazy-loaded?
-- ❓ **Code Splitting**: Should we split code by game mode?
-- ❓ **Offline Support**: Should the game work offline (PWA)?
+- ✅ **Image Loading**: No lazy-loading for now
+- ✅ **Code Splitting**: To be determined
+- ✅ **Offline Support**: No PWA/offline support for now
 
 ### Analytics
-- ❓ **User Analytics**: What metrics do you want to track?
-  - Suggested: Games played, completion rate, average guesses, popular countries
-- ❓ **A/B Testing**: Do you want to A/B test features?
+- ✅ **User Analytics**: Track all suggested metrics plus session duration
+  - Games played, completion rate, average guesses, popular countries, time spent per session
+- ✅ **A/B Testing**: Not for now, maybe in the future
 
 ---
 
 ## 14. Monetization (Future)
 
 ### Business Model
-- ❓ **Ads**: Will you show ads? If so, where and how often?
-- ❓ **Premium Features**: What features might be premium?
-  - Suggested: Ad-free, unlimited hints, custom themes, advanced stats
-- ❓ **Donations**: Will you accept donations/tips?
+- ✅ **Ads**: Not at first, but yes if it goes viral
+- ✅ **Premium Features**: Nothing for now, to be decided later
+- ✅ **Donations**: Not now, maybe in the future
 
 ---
 
 ## 15. Branding Assets
 
 ### Logo & Icon
-- ❓ **Logo**: Do you need a logo designed (currently just text)?
-- ❓ **Favicon**: Do you have a favicon designed?
-- ❓ **App Icons**: If making a PWA, do you need app icons?
+- ✅ **Logo**: No logo needed for now
+- ✅ **Favicon**: Yes, favicon is already designed
+- ✅ **App Icons**: No PWA icons needed
 
 ### Visual Identity
-- ❓ **Illustrations**: Do you want custom illustrations or stick with emojis?
-- ❓ **Patterns**: Should there be decorative background patterns?
-- ❓ **Photography**: Will you use real country photos anywhere?
+- ✅ **Illustrations**: Yes, custom illustrations in the future
+- ✅ **Patterns**: To be decided
+- ✅ **Photography**: Yes, will use real country photos
 
 ---
 
 ## 16. Domain & Deployment
 
 ### atlas-daily.com Setup
-- ❓ **Hosting Provider**: Where will you host? (Vercel, Netlify, AWS, etc.)
-- ❓ **Email**: Do you need email addresses (@atlas-daily.com)?
-- ❓ **SSL**: Will be handled by hosting provider automatically?
+- ✅ **Hosting Provider**: Vercel
+- ✅ **Email**: No email addresses needed
+- ✅ **SSL**: Not handled automatically (needs configuration)
 
 ### Subdomains
-- ❓ **API Subdomain**: Do you need api.atlas-daily.com for future backend?
-- ❓ **Blog**: Do you want blog.atlas-daily.com for content?
-- ❓ **Docs**: Do you need docs.atlas-daily.com for guides?
+- ✅ **API Subdomain**: Yes, need api.atlas-daily.com for future backend
+- ✅ **Blog**: To be determined
+- ✅ **Docs**: To be determined
 
 ---
 

@@ -126,12 +126,15 @@ body {
     gap: 10px;
     margin-bottom: 30px;
     position: relative;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .country-input {
     flex: 1;
-    padding: 16px 20px;
-    font-size: 1rem;
+    padding: 12px 16px;
+    font-size: 0.9rem;
     border: 2px solid #444;
     border-radius: 50px;
     background: #2d2d2d;
@@ -147,21 +150,19 @@ body {
 .country-input:focus {
     background: #333;
     border-color: #666;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .guess-button {
     background: #007BFF;
     color: white;
-    border: none;
-    padding: 16px 24px;
+    border: 2px solid transparent;
+    padding: 12px 20px;
     width: auto;
     height: auto;
-    font-size: 1rem;
+    font-size: 0.9rem;
     border-radius: 50px;
     cursor: pointer;
     font-weight: 500;
-    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
@@ -170,13 +171,11 @@ body {
 }
 
 .guess-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
-    background: #0069d9;
+    border-color: white;
+    background: #007BFF;
 }
 
 .guess-button:active {
-    transform: translateY(0);
     background: #0056b3;
 }
 
@@ -369,7 +368,7 @@ body {
 .play-again-button {
     background: #007BFF;
     color: white;
-    border: none;
+    border: 2px solid transparent;
     padding: 16px;
     font-size: 1rem;
     width: calc(100% - 60px);
@@ -377,14 +376,12 @@ body {
     border-radius: 12px;
     cursor: pointer;
     font-weight: 500;
-    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
     transition: all 0.3s ease;
 }
 
 .play-again-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
-    background: #0069d9;
+    border-color: white;
+    background: #007BFF;
 }
 
 /* Utility */
@@ -557,7 +554,6 @@ body {
     background: #007BFF;
     color: white;
     border-color: #007BFF;
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
 }
 
 .game-mode {
@@ -582,25 +578,26 @@ body {
 
 .comparison-table th {
     background: rgba(255, 255, 255, 0.1);
-    padding: 12px 10px;
+    padding: 12px 6px;
     text-align: center;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     font-weight: 500;
     border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-    white-space: nowrap;
+    white-space: normal;
     overflow: hidden;
-    text-overflow: ellipsis;
+    word-wrap: break-word;
+    line-height: 1.2;
 }
 
 .comparison-table td {
-    padding: 14px 10px;
+    padding: 14px 6px;
     text-align: center;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
-    white-space: nowrap;
+    white-space: normal;
     overflow: hidden;
-    text-overflow: ellipsis;
+    word-wrap: break-word;
     opacity: 0;
     transform: translateX(-20px);
 }
@@ -679,53 +676,207 @@ body {
     border: 2px solid #22c55e;
 }
 
-/* Comparison Win Message */
-.comparison-win {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    width: 90%;
-    max-width: 400px;
+/* Comparison Win Page */
+.comparison-win-page {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    animation: fadeIn 0.5s ease;
 }
 
-.win-content {
-    background: white;
+.win-page-content {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
-    padding: 40px 30px;
+    padding: 60px 40px;
     text-align: center;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-    animation: cardSlideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    position: relative;
 }
 
 .win-flag {
-    font-size: 5rem;
-    margin-bottom: 20px;
+    font-size: 6rem;
+    margin-bottom: 30px;
     animation: flagWave 1s ease-in-out infinite;
 }
 
 .win-title {
-    font-size: 2rem;
-    color: #1a1a1a;
-    margin-bottom: 10px;
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 15px;
     font-weight: 400;
 }
 
 .win-text {
-    font-size: 1.1rem;
-    color: #666;
-    margin-bottom: 25px;
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 10px;
 }
 
 .win-text span {
     font-weight: 600;
-    color: #1a1a1a;
+    color: white;
+}
+
+.win-guesses {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 40px;
+}
+
+.win-guesses span {
+    font-weight: 600;
+    color: #007BFF;
+    font-size: 1.3rem;
+}
+
+.win-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.share-button {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 16px;
+    font-size: 1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.share-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: white;
+}
+
+.share-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Tips Game */
+.tips-container {
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+.tip-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+.tip-card.tip-reveal {
+    animation: tipReveal 0.5s ease;
+}
+
+.tip-number {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tip-number span {
+    color: #007BFF;
+    font-weight: 600;
+}
+
+.tip-text {
+    font-size: 1.3rem;
+    color: white;
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+@keyframes tipReveal {
+    0% {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
 /* Responsive */
-@media (max-width: 600px) {
+/* Small mobile - 480px */
+@media (max-width: 480px) {
+    .input-section {
+        max-width: 280px;
+        flex-direction: column;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .emoji-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .emoji-hint {
+        padding: 18px;
+        font-size: 1.8rem;
+    }
+
+    .comparison-table th {
+        font-size: 0.55rem;
+        padding: 5px 2px;
+    }
+
+    .comparison-table td {
+        font-size: 0.6rem;
+        padding: 7px 2px;
+    }
+
+    .comparison-table td.country-cell {
+        font-size: 0.65rem;
+    }
+
+    .mode-selector {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .mode-button {
+        padding: 8px 16px;
+    }
+
+    .tip-card {
+        padding: 30px 20px;
+    }
+
+    .tip-text {
+        font-size: 1.1rem;
+    }
+}
+
+/* Mobile - 600px */
+@media (min-width: 481px) and (max-width: 600px) {
+    .input-section {
+        max-width: 350px;
+        flex-direction: column;
+    }
+
     .title {
         font-size: 3rem;
     }
@@ -740,31 +891,20 @@ body {
         font-size: 2rem;
     }
 
-    .input-section {
-        flex-direction: column;
-    }
-
-    .success-content {
-        padding: 40px 30px;
-        margin: 20px;
-    }
-
-    .flag-reveal {
-        font-size: 4rem;
-    }
-
     .comparison-table th {
-        font-size: 0.6rem;
-        padding: 6px 2px;
+        font-size: 0.55rem;
+        padding: 6px 1px;
+        line-height: 1.1;
     }
 
     .comparison-table td {
-        font-size: 0.65rem;
-        padding: 8px 2px;
+        font-size: 0.6rem;
+        padding: 8px 1px;
+        line-height: 1.2;
     }
 
     .comparison-table td.country-cell {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
     }
 
     .mode-selector {
@@ -774,5 +914,30 @@ body {
 
     .mode-button {
         padding: 10px 20px;
+    }
+}
+
+/* Tablet - 768px */
+@media (min-width: 601px) and (max-width: 768px) {
+    .input-section {
+        max-width: 420px;
+    }
+
+    .title {
+        font-size: 3.5rem;
+    }
+}
+
+/* Small desktop - 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .input-section {
+        max-width: 480px;
+    }
+}
+
+/* Large desktop - 1440px and above */
+@media (min-width: 1025px) {
+    .input-section {
+        max-width: 500px;
     }
 }
